@@ -27,14 +27,15 @@ def add_author():
     if new_user == 'No new tweets.':
         response_body = 'No new tweets.'
 
-        return jsonify(response_name=twitter_handle, response_body=response_body)
-
-    else:
-        response_body = f'@{{new_user.name}}\'s tweets added to the database'.format(
+    elif 'Tweets' in dir(new_user):
+        response_body = f'@{new_user.name}\'s tweets added to the database\n'.format(
             ', '.join([t.text for t in new_user.Tweets])
         )
 
-        return jsonify(response_name=twitter_handle, response_body=response_body)
+    else:
+        response_body = f'@{new_user.name}\'s tweets added to the database\n'
+
+    return jsonify(response_name=twitter_handle, response_body=response_body)
 
 
 @app.route('/predict_author', methods=['GET', 'POST'])

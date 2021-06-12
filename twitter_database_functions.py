@@ -20,7 +20,7 @@ def upsert_user(twitter_handle, nlp):
             DB.session.add(db_user)
 
         user_tweet_ids = [tweet.id for tweet in Tweet.query.filter(Tweet.user_id == db_user.id).all()]
-        user_tweets_func = partial(twitter_user.timeline, count=200, exclude_replies=True, include_trs=False,
+        user_tweets_func = partial(twitter_user.timeline, count=500, exclude_replies=True, include_trs=False,
                                                 tweet_mode='extended')
         if len(user_tweet_ids) > 0:
             last_tweet_stored_id = np.max(user_tweet_ids)
@@ -41,6 +41,7 @@ def upsert_user(twitter_handle, nlp):
         raise e
     else:
         DB.session.commit()
+
     return db_user
 
 
