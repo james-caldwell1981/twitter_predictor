@@ -3,6 +3,28 @@ from twitter_data_model import DB, Tweet, User
 from functools import partial
 
 
+"""
+Cannot connect to heroku due to the following errors and I cannot afford more time than already spent
+or risk being unable to complete the sprint challenge.
+
+(venv) C:\Repositories\unit3\lambda33\heroku>git push origin
+Enumerating objects: 10, done.
+Counting objects: 100% (10/10), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (6/6), 645 bytes | 322.00 KiB/s, done.
+Total 6 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+To https://github.com/james-caldwell1981/twitter_predictor.git
+   a3151ba..384343e  main -> main
+   
+(venv) C:\Repositories\unit3\lambda33\heroku>heroku ps:scale web=1 -a lambda33
+Scaling dynos... !
+ !    Couldn't find that process type (web).
+
+
+"""
+
 def upsert_user(twitter_handle, nlp, twitter_api):
 
     try:
