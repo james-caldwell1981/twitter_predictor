@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <title>{{title}}</title>
+</head>
+<body>
+<p>
+    {{welcome}}
+<br>
+{{body}}
+</p>
+<label for="author_name_input">
+    Twitter Handle
+</label>
+<br>
+    <input id="author_name_input" type="text" placeholder="Enter User" maxlength="20">
+<br>
+<button id="author_submit">
+    Insert into Database
+</button>
+<br>
+<br>
+<label for="tweet_text_input">
+    Enter tweet for classification.
+</label>
+<br>
+    <input id="tweet_text_input" type="text" placeholder="Tweet to Classify" maxlength="200">
+<button id="tweet_submit">
+    Classify Tweet
+</button>
+<div id="response">
+    <p id="response_name">response_name</p>
+    <p id="response_body">response_body</p>
+</div>
+</body>
+<script type="text/javascript" src="../static/tweet.js"></script>
+</html>
