@@ -3,9 +3,13 @@ from twitter_data_model import DB
 from twitter_database_functions import upsert_user, get_user_names
 import spacy
 from predict import get_most_likely_author
-
+import tweepy
+from os import environ
 
 def create_app():
+
+    twitter_auth = tweepy.OAuthHandler(environ['TWITTER_API_KEY'], environ['TWITTER_API_KEY_SECRET'])
+    twitter_api = tweepy.API(twitter_auth)
 
     app = Flask(__name__)
 
@@ -23,7 +27,7 @@ def create_app():
     @app.route('/add_author', methods=['GET', 'POST'])
     def add_author():
         twitter_handle = request.args['twitter_handle']
-        new_user = upsert_user(twitter_handle, nlp)
+        new_user = upsert_user(twitter_handle, nlp, twitter_api)
 
         if new_user == 'No new tweets.':
             response_body = 'No new tweets.'

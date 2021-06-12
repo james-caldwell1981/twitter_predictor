@@ -1,15 +1,9 @@
 import numpy as np
-import tweepy
-from os import environ
 from twitter_data_model import DB, Tweet, User
 from functools import partial
 
 
-twitter_auth = tweepy.OAuthHandler(environ['TWITTER_API_KEY'], environ['TWITTER_API_KEY_SECRET'])
-twitter_api = tweepy.API(twitter_auth)
-
-
-def upsert_user(twitter_handle, nlp):
+def upsert_user(twitter_handle, nlp, twitter_api):
 
     try:
         twitter_user = twitter_api.get_user(twitter_handle)
