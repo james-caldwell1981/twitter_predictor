@@ -4,25 +4,28 @@ from functools import partial
 
 
 """
-Cannot connect to heroku due to the following errors and I cannot afford more time than already spent
-or risk being unable to complete the sprint challenge.
+The heroku library via pip also installs python-dateutil 1.5 regardless of what is already installed,
+which is outdated and breaks pandas. The solution was to uninstall heroku and python-dateutil,
+reinstalling the correct version of python-dateutil.
 
-(venv) C:\Repositories\unit3\lambda33\heroku>git push origin
-Enumerating objects: 10, done.
-Counting objects: 100% (10/10), done.
-Delta compression using up to 4 threads
-Compressing objects: 100% (5/5), done.
-Writing objects: 100% (6/6), 645 bytes | 322.00 KiB/s, done.
-Total 6 (delta 3), reused 0 (delta 0), pack-reused 0
-remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
-To https://github.com/james-caldwell1981/twitter_predictor.git
-   a3151ba..384343e  main -> main
-   
-(venv) C:\Repositories\unit3\lambda33\heroku>heroku ps:scale web=1 -a lambda33
+The updated version of heroku via pip is heroku3, which does not work on windows. Instead,
+a windows user must download and run an installer, then restart the computer. After this,
+the library will not work unil the user deletes the buildpacks and reinstalls them in
+the correct order because heroku does not do this automatically. Only then  can the user
+initialize a web dyno, which is required to handle the application requests.
+
+(venv) C:\Repositories\unit3\lambda33\heroku>heroku ps:scale web=2 -a lambda33
 Scaling dynos... !
  !    Couldn't find that process type (web).
 
 
+Also, gunicorn does not work on windows due to the library fcntl not supporting windows.
+This means the only way to test the application is by deploying to heroku, which has eaten
+a lot of time.
+
+The above is my understanding of the issues encountered with deployment to heroku from windows.
+I may be mistaken and have missed a setting or function call, but so far the internet trail
+has led me here but I don't have the time to finish it due to the sprint challenge being due.
 """
 
 def upsert_user(twitter_handle, nlp, twitter_api):
